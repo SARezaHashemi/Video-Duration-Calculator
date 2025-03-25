@@ -35,16 +35,46 @@ if(files.Count()==0){
     Console.WriteLine("No Video File Found");
     return;
 }
-
+var tmpclr = Console.ForegroundColor;
 
 TimeSpan spn = TimeSpan.Zero;
-foreach(var file in files){
-    TimeSpan filespn = GetDuration(file);
-    spn += filespn;
-    Console.WriteLine($"{file.Split('/')[^1]}: {filespn}");
+if(!IsRecursive){
+    foreach(var file in files){
+        TimeSpan filespn = GetDuration(file);
+        spn += filespn;
+        Console.WriteLine($"{file.Split('/')[^1]}: {filespn}");
+    }
 }
-
-Console.WriteLine($"total Duration: {spn}");
+else{
+    string dir = "";
+    int dirCount = 0;
+    TimeSpan folderSpn = TimeSpan.Zero;
+    
+    foreach(var file in files){
+        string[] filepath = file.Split('/');
+        string fileDir = filepath[..^1].Aggregate((a,b)=>a+"/"+b);
+        if(fileDir != dir){
+            if(folderSpn != TimeSpan.Zero){
+                Console.WriteLine($"\n    Folder Time: {folderSpn}");
+                spn += folderSpn;
+                folderSpn = TimeSpan.Zero;
+            }
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nDirectory {dirCount}-: {fileDir}\n");
+            Console.ForegroundColor = tmpclr;
+            dirCount++;
+            dir = fileDir;
+        }
+        TimeSpan filespn = GetDuration(file);
+        folderSpn += filespn;
+        Console.WriteLine($"    {filepath[^1]}: {filespn}");
+    }
+    Console.WriteLine($"\nFolder Time: {folderSpn}\n");
+}
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine($"Total Duration: {spn}");
+Console.ForegroundColor = tmpclr;
 
 
 
