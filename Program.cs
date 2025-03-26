@@ -70,7 +70,7 @@ else{
         folderSpn += filespn;
         Console.WriteLine($"    {filepath[^1]}: {filespn}");
     }
-    Console.WriteLine($"\nFolder Time: {folderSpn}\n");
+    Console.WriteLine($"\n    Folder Time: {folderSpn}\n");
 }
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine($"Total Duration: {spn}");
