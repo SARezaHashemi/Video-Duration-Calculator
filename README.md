@@ -19,7 +19,7 @@ git clone https://github.com/SARezaHashemi/Video-Duration-Calculator.git
 ```bash
 dotnet build
 ```
-
+3. Make sure you have ffmpeg cli on your system
 ## Usage
 ```bash
 dotnet run -- /path/to/folder/ <Options>
