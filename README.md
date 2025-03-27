@@ -13,7 +13,7 @@ A simple .NET command-line tool that scans a directory and calculates the total 
 ## Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/VideoDurationCalculator.git
+git clone https://github.com/SARezaHashemi/Video-Duration-Calculator.git
 ```
 2. Build the project
 ```bash
