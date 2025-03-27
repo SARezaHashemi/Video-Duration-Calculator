@@ -30,5 +30,7 @@ dotnet run -- /path/to/folder/ <Options>
 
 
 ## Note
-- This project is developed on arch-linux and it is not tested on any other operating system
+- This project is developed on arch-linux, and it is tested on Microsoft Windows.
+- If you have problem with the code make sure you installed ffmpeg[https://www.ffmpeg.org/] and it works correctly
+- If you have installed a ffmpeg build like gyan.dev make sure to add ffmpeg to your Microsoft Windows Path in the Environment Variables.
 
