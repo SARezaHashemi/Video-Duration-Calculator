@@ -75,6 +75,7 @@ else{
         folderSpn += filespn;
         Console.WriteLine($"    {filepath[^1]}: {filespn}");
     }
+    spn += folderSpn;
     Console.WriteLine($"\n    Folder Time: {folderSpn}\n");
 }
 Console.ForegroundColor = ConsoleColor.Yellow;
