@@ -1,5 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
+char spilitChar = '\\';
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)){
+    spilitChar = '/';
+}
 
 if (args.Length ==0)
 {
@@ -42,7 +47,7 @@ if(!IsRecursive){
     foreach(var file in files){
         TimeSpan filespn = GetDuration(file);
         spn += filespn;
-        Console.WriteLine($"{file.Split('/')[^1]}: {filespn}");
+        Console.WriteLine($"{file.Split(spilitChar)[^1]}: {filespn}");
     }
 }
 else{
@@ -51,8 +56,8 @@ else{
     TimeSpan folderSpn = TimeSpan.Zero;
     
     foreach(var file in files){
-        string[] filepath = file.Split('/');
-        string fileDir = filepath[..^1].Aggregate((a,b)=>a+"/"+b);
+        string[] filepath = file.Split(spilitChar);
+        string fileDir = filepath[..^1].Aggregate((a,b)=>a+spilitChar+b);
         if(fileDir != dir){
             if(folderSpn != TimeSpan.Zero){
                 Console.WriteLine($"\n    Folder Time: {folderSpn}");
